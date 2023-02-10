@@ -1,38 +1,57 @@
+import time as t
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from chromedriver_py import binary_path
 from main import *
-from paths import *
-
-#TODO: add departure and arrival date to Expedia
-#TODO: add web scrapper for Decolar
+from src.paths import *
 
 service_object = Service(binary_path)
 browser = webdriver.Chrome(service=service_object)
 
 def expedia_scrapper(departure, arrival, going_dt, returning_dt):
-    EXPEDIA_URL = 'https://www.expedia.com.br/'
+    #TODO: add 'select_button' for both dates;
+    #TODO: fix 'NoSuchElement' exception from choosing the first item in search query
+    
+    EXPEDIA_URL = 'https://www.expedia.com.br/passagens-aereas'
     
     browser.get(EXPEDIA_URL)
 
-    flight_from = browser.find_element_by_xpath(EXPEDIA_DEPARTURE_PATH)
+    select_departure_button = browser.find_element(by=By.XPATH, value=EXPEDIA_DEPARTURE_BUTTON)
+    t.sleep(1)
+    select_departure_button.click()
+    flight_from = browser.find_element(by=By.XPATH, value=EXPEDIA_DEPARTURE_PATH)
+    t.sleep(1)
     flight_from.clear()
     flight_from.send_keys(' ' + departure)
-    first_item = browser.find_element_by_xpath("//a[@id='aria-option-0']")
+    t.sleep(1.5)
+    first_item = browser.find_element(by=By.XPATH, value="//a[@id='aria-option-0']")
+    t.sleep(1.5)
     first_item.click()
     
-    flight_to = browser.find_element_by_xpath(EXPEDIA_ARRIVAL_PATH)
+    select_arrival_button = browser.find_element(by=By.XPATH, value=EXPEDIA_ARRIVAL_BUTTON)
+    t.sleep(1)
+    select_arrival_button.click()
+    flight_to = browser.find_element(by=By.XPATH, value=EXPEDIA_ARRIVAL_PATH)
+    t.sleep(1)
     flight_to.clear()
     flight_to.send_keys(' ' + arrival)
-    first_item = browser.find_element_by_xpath("//a[@id='aria-option-0']")
+    t.sleep(1.5)
+    first_item = browser.find_element(by=By.XPATH, value="//a[@id='aria-option-0']")
+    t.sleep(1.5)
     first_item.click()
     
-    departure_date = browser.find_element_by_xpath()
+    departure_date = browser.find_element(by=By.XPATH, value=EXPEDIA_DEPARTURE_DATE)
+    departure_date.clear()
+    departure_date.send_keys(going_dt.day + '/' + going_dt.month + '/' + going_dt.year)
     
-    arrival_date = browser.find_element_by_xpath()
+    arrival_date = browser.find_element(by=By.XPATH, value=EXPEDIA_ARRIVAL_DATE)
+    arrival_date.clear()
+    arrival_date.send_keys(returning_dt.day + '/' + returning_dt.month + '/' + returning_dt.year)
     
     
 
 def decolar_scrapper(origin, departure, going_dt, returning_dt):
+    #TODO: add web scrapper for Decolar
     DECOLAR_URL = 'https://www.decolar.com/'
     

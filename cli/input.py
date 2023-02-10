@@ -7,8 +7,8 @@ def inp_receiver():
           --------------------------------
           """)
     
-    origin = input(str('Origin Country: ')).rstrip().lstrip().capitalize()
-    departure = input(str('Departure Country: ')).rstrip().lstrip().capitalize()
+    origin = input(str('Departure: ')).rstrip().lstrip().capitalize()
+    departure = input(str('Arrival: ')).rstrip().lstrip().capitalize()
     
     going_date = input((str('Going date (DD/MM/YY): '))).split('/')
     day = int(going_date[0])

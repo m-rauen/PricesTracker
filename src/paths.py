@@ -1,14 +1,18 @@
-#TODO: add departure and arrival-date ID for Expedia
-#TODO: add departure and arrival-date ID for Decolar
+#TODO: add Decolar buttons XPATH
+#TODO: maybe we've to add Expedia XPATH buttons for the dates 
 
 #Expedia Paths 
+EXPEDIA_DEPARTURE_BUTTON = '//*[@id="wizard-flight-tab-roundtrip"]/div[2]/div[1]/div/div[1]/div/div/div[2]/div[1]/button'
+
+EXPEDIA_ARRIVAL_BUTTON = '//*[@id="wizard-flight-tab-roundtrip"]/div[2]/div[1]/div/div[2]/div/div/div[2]/div[1]/button'
+
 EXPEDIA_DEPARTURE_PATH = '//*[@id="location-field-leg1-origin"]'
 
 EXPEDIA_ARRIVAL_PATH = '//*[@id="location-field-leg1-destination"]'
 
-EXPEDIA_DEPARTURE_DATE = ''
+EXPEDIA_DEPARTURE_DATE = '//*[@id="app-layer-datepicker-flights-departure-arrival-start"]/section/div[2]/div[1]/section[2]/section/button[1]/span'
 
-EXPEDIA_ARRIVAL_DATE = ''
+EXPEDIA_ARRIVAL_DATE = '//*[@id="app-layer-datepicker-flights-departure-arrival-start"]/section/div[2]/div[1]/section[2]/section/button[2]/span'
 
 #Decolar Paths 
 DECOLAR_DEPARTURE_PATH = '/html/body/div[8]/div[1]/div[2]/input'
