@@ -14,6 +14,10 @@ EXPEDIA_DEPARTURE_DATE = '//*[@id="app-layer-datepicker-flights-departure-arriva
 
 EXPEDIA_ARRIVAL_DATE = '//*[@id="app-layer-datepicker-flights-departure-arrival-start"]/section/div[2]/div[1]/section[2]/section/button[2]/span'
 
+EXPEDIA_MENU = '//*[@id="wizard-flight-tab-roundtrip"]/div[2]/div[1]/div/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/div/ul/li[1]/div'
+
+EXPEDIA_FIRST_ITEM = '//*[@id="wizard-flight-tab-roundtrip"]/div[2]/div[1]/div/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/div/ul/li[1]/div/button'
+
 #Decolar Paths 
 DECOLAR_DEPARTURE_PATH = '/html/body/div[8]/div[1]/div[2]/input'
 
