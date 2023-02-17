@@ -16,6 +16,7 @@ browser = webdriver.Chrome(service=service_object)
 
 def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     #TODO: add 'select_button' for both dates;
+    #TODO: figure out how to find the elements on the popupwindow;
     
     EXPEDIA_URL = 'https://www.expedia.com.br/passagens-aereas'
     
@@ -26,16 +27,19 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     flight_from = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
     flight_from.clear()
     flight_from.send_keys(' ' + departure)
-    find_first_item_dep = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, "//[contains(@class, 'uitk-button')]")))
-    ActionChains(browser).move_to_element(find_first_item_dep).click().perform()
+    flight_from.send_keys(Keys.ENTER)
     
-    select_arrival_button = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_BUTTON)))
-    select_arrival_button.click()
-    flight_to = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_PATH)))
-    flight_to.clear()
-    flight_to.send_keys(' ' + arrival)
-    find_first_item_arrv = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'uitk-action-list-item-content')]")))
-    ActionChains(browser).move_to_element(find_first_item_arrv).click().perform()
+    # find_first_item_dep = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, './/*[@id="wizard-flight-tab-roundtrip"]/div[2]/div[1]/div/div[1]/div/div/div[1]/section/div[2]/div[2]/div[1]/div/ul/li[1]/div/button')))
+    # ActionChains(browser).move_to_element(find_first_item_dep).click().perform()
+    # find_first_item_dep.send_keys(Keys.ENTER)
+    
+    # select_arrival_button = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_BUTTON)))
+    # select_arrival_button.click()
+    # flight_to = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_PATH)))
+    # flight_to.clear()
+    # flight_to.send_keys(' ' + arrival)
+    # find_first_item_arrv = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'uitk-action-list-item-content')]")))
+    # ActionChains(browser).move_to_element(find_first_item_arrv).click().perform()
     
     
     # departure_date = browser.find_element(by=By.XPATH, value=EXPEDIA_DEPARTURE_DATE)

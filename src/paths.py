@@ -1,5 +1,6 @@
 #TODO: add Decolar buttons XPATH
 #TODO: maybe we've to add Expedia XPATH buttons for the dates 
+#TODO: organize all the final paths in this page
 
 #Expedia Paths 
 EXPEDIA_DEPARTURE_BUTTON = '//*[@id="wizard-flight-tab-roundtrip"]/div[2]/div[1]/div/div[1]/div/div/div[2]/div[1]/button'
