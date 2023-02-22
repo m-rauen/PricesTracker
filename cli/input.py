@@ -7,8 +7,8 @@ def inp_receiver():
           --------------------------------
           """)
     
-    origin = input(str('Departure: ')).rstrip().lstrip().capitalize()
-    departure = input(str('Arrival: ')).rstrip().lstrip().capitalize()
+    origin = input(str('Departure: ')).strip().capitalize()
+    departure = input(str('Arrival: ')).strip().capitalize()
     
     going_date = input((str('Going date (DD/MM/YY): '))).split('/')
     day = int(going_date[0])
@@ -17,7 +17,7 @@ def inp_receiver():
     del going_date
     going_date = dt.date(year, month, day)
           
-    returning_date = input(str('Returning date (DD/YYYY): ')).split('/')
+    returning_date = input(str('Returning date (DD/MM/YYYY): ')).split('/')
     day = int(returning_date[0])
     month = int(returning_date[1])
     year = int(returning_date[2])
