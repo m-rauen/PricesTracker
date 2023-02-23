@@ -13,6 +13,7 @@ from src.paths import *
 
 service_object = Service(binary_path)
 browser = webdriver.Chrome(service=service_object)
+wait = WebDriverWait(browser, 10)
 
 def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     #TODO: add 'select_button' for both dates;
@@ -29,15 +30,17 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     # flight_from.send_keys(' ' + departure)
     # flight_from.send_keys(Keys.ENTER)
     
-    select_departure_button = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_BUTTON)))
+    select_departure_button = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_BUTTON)))
     select_departure_button.click()
-    flight_from = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
+    flight_from = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
+    wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
     flight_from.clear()
-    flight_from.send_keys(' ' + departure)
-    ActionChains(browser)\
-        .click(flight_from)\
-        .perform()
-    t.sleep(5)
+    flight_from.send_keys(departure)
+    
+    
+    
+    
+    
 
 
     # select_arrival_button = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_BUTTON)))
