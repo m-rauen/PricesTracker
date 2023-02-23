@@ -36,11 +36,20 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
     flight_from.clear()
     flight_from.send_keys(departure)
-    
-    
-    
-    
-    
+    wait.until(EC.text_to_be_present_in_element_value((By.XPATH, EXPEDIA_DEPARTURE_PATH), departure))
+    t.sleep(1)
+    suggestions = browser.find_elements(By.CSS_SELECTOR, '.uitk-typeahead-results li')
+    if len(suggestions) > 0:
+        suggestions[0].click()
+        print('deu A')
+    else:
+    # Wait a bit longer and try again
+        t.sleep(3)
+        suggestions = browser.find_elements(By.CSS_SELECTOR, '.uitk-typeahead-results li')
+        print('deu B')
+        if len(suggestions) > 0:
+            suggestions[0].click()
+            print('deu C')
 
 
     # select_arrival_button = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_BUTTON)))
