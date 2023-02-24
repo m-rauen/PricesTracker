@@ -23,47 +23,35 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     browser.get(EXPEDIA_URL)
 
     # functional way, however, not in the intended manner
-    # select_departure_button = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_BUTTON)))
-    # select_departure_button.click()
-    # flight_from = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
-    # flight_from.clear()
-    # flight_from.send_keys(' ' + departure)
-    # flight_from.send_keys(Keys.ENTER)
-    
-    select_departure_button = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_BUTTON)))
-    select_departure_button.click()
+    departure_button = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_BUTTON)))
+    departure_button.click()
     flight_from = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
-    wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
     flight_from.clear()
     flight_from.send_keys(departure)
-    wait.until(EC.text_to_be_present_in_element_value((By.XPATH, EXPEDIA_DEPARTURE_PATH), departure))
-    t.sleep(1)
-    suggestions = browser.find_elements(By.CSS_SELECTOR, '.uitk-typeahead-results li')
-    if len(suggestions) > 0:
-        suggestions[0].click()
-        print('deu A')
-    else:
-    # Wait a bit longer and try again
-        t.sleep(3)
-        suggestions = browser.find_elements(By.CSS_SELECTOR, '.uitk-typeahead-results li')
-        print('deu B')
-        if len(suggestions) > 0:
-            suggestions[0].click()
-            print('deu C')
-
-
-    # select_arrival_button = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_BUTTON)))
-    # select_arrival_button.click()
-    # flight_to = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_PATH)))
-    # flight_to.clear()
-    # flight_to.send_keys(' ' + arrival)
-    # find_first_item_arrv = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'uitk-action-list-item-content')]")))
-    # ActionChains(browser).move_to_element(find_first_item_arrv).click().perform()
+    browser.implicitly_wait(20)
+    flight_from.send_keys(Keys.ENTER)
+    
+    arrival_button = wait.until(EC.presence_of_element_located((By.XPATH,    EXPEDIA_ARRIVAL_BUTTON)))
+    arrival_button.click()
+    flight_to = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_PATH)))
+    flight_to.clear()
+    flight_to.send_keys(arrival)
+    browser.implicitly_wait(20)
+    flight_to.send_keys(Keys.ENTER)
     
     
-    # departure_date = browser.find_element(by=By.XPATH, value=EXPEDIA_DEPARTURE_DATE)
-    # departure_date.clear()
-    # departure_date.send_keys(going_dt.day + '/' + going_dt.month + '/' + going_dt.year)
+    departure_date_button = browser.find_element(by=By.XPATH, value=EXPEDIA_DEPARTURE_DATE)
+    departure_date_button.click()
+    departure_date = browser.find_element(by=By.XPATH, value="//*[@id='app-layer-datepicker-flights-departure-arrival-start']/section/div[2]/div[1]/section[2]/section/button[1]/span")
+    departure_date.click()
+    departure_month = browser.find_element(by=By.CSS_SELECTOR, value="#wizard-flight-tab-roundtrip .datepicker-cal-month:nth-child(1) > select")
+    departure_year = browser.find_element(by=By.CSS_SELECTOR, value="#wizard-flight-tab-roundtrip .datepicker-cal-year:nth-child(1) > select")
+    departure_month.send_keys(going_dt.month)
+    departure_year.send_keys(going_dt.year)
+    
+    
+    departure_date.send_keys(going_dt)
+    departure_date.send_keys(Keys.ENTER)
     
     # arrival_date = browser.find_element(by=By.XPATH, value=EXPEDIA_ARRIVAL_DATE)
     # arrival_date.clear()

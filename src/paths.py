@@ -11,11 +11,9 @@ EXPEDIA_DEPARTURE_PATH = '//*[@id="location-field-leg1-origin"]'
 
 EXPEDIA_ARRIVAL_PATH = '//*[@id="location-field-leg1-destination"]'
 
-EXPEDIA_DEPARTURE_DATE = '//*[@id="app-layer-datepicker-flights-departure-arrival-start"]/section/div[2]/div[1]/section[2]/section/button[1]/span'
+EXPEDIA_DEPARTURE_DATE = '//*[@id="d1-btn"]'
 
-EXPEDIA_ARRIVAL_DATE = '//*[@id="app-layer-datepicker-flights-departure-arrival-start"]/section/div[2]/div[1]/section[2]/section/button[2]/span'
-
-EXPEDIA_FIRST_ITEM = ''
+EXPEDIA_ARRIVAL_DATE = '//*[@id="d2-btn"]'
 
 #Decolar Paths 
 DECOLAR_DEPARTURE_PATH = '/html/body/div[8]/div[1]/div[2]/input'
