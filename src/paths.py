@@ -15,7 +15,7 @@ EXPEDIA_DEPARTURE_DATE_BUTTON = '//*[@id="d1-btn"]'
 
 EXPEDIA_ARRIVAL_DATE_BUTTON = '//*[@id="d2-btn"]'
 
-EXPEDIA_DEPARTURE_DATE_PATH = "//*[@id='app-layer-datepicker-flights-departure-arrival-start']/section/div[2]/div[1]/section[2]/section/button[1]/span"
+EXPEDIA_DEPARTURE_DATE_PATH = ""
 
 EXPEDIA_ARRIVAL_DATE_PATH = ""
 

@@ -2,6 +2,10 @@ import datetime as dt
 import calendar as cd
 
 def inp_receiver():
+    #TODO: change CLI to GUI;
+    #TODO: receive input via mini popup window
+    #TODO: format dates to writing ('23 de mar. de 2023')
+    
       print("""
           --------------------------------
           Welcome to FlightPrices-Tracker
