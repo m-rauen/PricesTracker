@@ -16,40 +16,45 @@ browser = webdriver.Chrome(service=service_object)
 wait = WebDriverWait(browser, 10)
 
 def expedia_scrapper(departure, arrival, going_dt, returning_dt):
-    #TODO: select specific date from calendar input
-    #TODO: button elements -> wait until element_to_be_clickable
-    #TODO: no button elements -> wait until presente_of_element_located
-    
+    #TODO: check buttons XPATH 
+    #TODO: wait till search page load, then, scrape it 
+        
     EXPEDIA_URL = 'https://www.expedia.com.br/passagens-aereas'
     
     browser.get(EXPEDIA_URL)
 
-    departure_button = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_BUTTON)))
+    departure_button = wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_DEPARTURE_BUTTON)))
     departure_button.click()
     flight_from = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_DEPARTURE_PATH)))
     flight_from.clear()
     flight_from.send_keys(departure)
     browser.implicitly_wait(20)
     flight_from.send_keys(Keys.ENTER)
+    t.sleep(3)
     
-    arrival_button = wait.until(EC.presence_of_element_located((By.XPATH,    EXPEDIA_ARRIVAL_BUTTON)))
+    arrival_button = wait.until(EC.element_to_be_clickable((By.XPATH,    EXPEDIA_ARRIVAL_BUTTON)))
     arrival_button.click()
     flight_to = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_PATH)))
     flight_to.clear()
     flight_to.send_keys(arrival)
     browser.implicitly_wait(20)
     flight_to.send_keys(Keys.ENTER)
+    t.sleep(3)
     
     departure_date_button = wait.until(EC.presence_of_element_located((By.XPATH,EXPEDIA_DEPARTURE_DATE_BUTTON)))
     departure_date_button.click()
-    select_departure_date = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='{}']").format(going_dt)))
-    select_departure_date.click()
-    t.sleep(5)
+    departure_date = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='{}']".format(going_dt))))
+    browser.execute_script("arguments[0].scrollIntoView()", departure_date)
+    departure_date.click()
+    t.sleep(3)
     
+    arrival_date = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='{}']".format(returning_dt))))
+    browser.execute_script("arguments[0].scrollIntoView()", arrival_date)
+    arrival_date.click()
+    t.sleep(3)
     
-    # departure_year = browser.find_element(by=By.CSS_SELECTOR, value="#wizard-flight-tab-roundtrip .datepicker-cal-year:nth-child(1) > select")
-    # #departure_month.send_keys(going_dt.month)
-    # departure_year.send_keys(going_dt.year)
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@data-stid='apply-date-picker']"))).click()
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='wizard-flight-pwa-1']/div[3]/div/button")))
     
     
 def decolar_scrapper(origin, departure, going_dt, returning_dt):
