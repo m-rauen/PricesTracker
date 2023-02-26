@@ -50,7 +50,7 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     arrival_date.click()
     t.sleep(3)
     
-    wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_SELECT_DATE_BUTTON))).click()
+    wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_CONFIRM_DATE_BUTTON))).click()
     wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_SEARCH_BUTTON))).click()
     
     
