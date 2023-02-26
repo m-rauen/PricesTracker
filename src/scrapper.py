@@ -3,10 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select 
 from chromedriver_py import binary_path
 from main import *
 from src.paths import *
@@ -16,7 +14,6 @@ browser = webdriver.Chrome(service=service_object)
 wait = WebDriverWait(browser, 10)
 
 def expedia_scrapper(departure, arrival, going_dt, returning_dt):
-    #TODO: check buttons XPATH 
     #TODO: wait till search page load, then, scrape it 
         
     EXPEDIA_URL = 'https://www.expedia.com.br/passagens-aereas'
@@ -53,8 +50,10 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     arrival_date.click()
     t.sleep(3)
     
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@data-stid='apply-date-picker']"))).click()
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='wizard-flight-pwa-1']/div[3]/div/button")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_SELECT_DATE_BUTTON))).click()
+    wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_SEARCH_BUTTON))).click()
+    
+    
     
     
 def decolar_scrapper(origin, departure, going_dt, returning_dt):
