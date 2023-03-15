@@ -57,19 +57,29 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     
     
 def decolar_scrapper(departure, arrival, going_dt, returning_dt):
-    #TODO: 
-    #TODO: 
+    #TODO: select the item suggested in the menu, or, find a way to just send the keys without pressing Enter
+    #TODO: add departure and arrival dates
     
-    DECOLAR_URL = 'https://www.decolar.com/'
+    DECOLAR_URL = 'https://www.decolar.com/passagens-aereas'
     
-    departure_button = wait.until(EC.element_to_be_clickable((By.XPATH, DECOLAR_DEPARTURE_BUTTON)))
-    departure_button.click()
-    flight_to = wait.until(EC.presence_of_element_located((By.XPATH, DECOLAR_DEPARTURE_PATH)))
-    flight_to.clear()
-    flight_to.send_keys(departure)
+    browser.get(DECOLAR_URL)
+    
+    flight_from = wait.until(EC.element_to_be_clickable((By.XPATH, DECOLAR_DEPARTURE_PATH)))
+    flight_from.click()
+    flight_from.clear()
+    flight_from.send_keys(departure)
+    flight_from.send_keys(Keys.ENTER)
     browser.implicitly_wait(20)
-    flight_to.send_keys(Keys.ENTER)
     t.sleep(3)
+    
+    flight_to = wait.until(EC.element_to_be_clickable((By.XPATH, DECOLAR_ARRIVAL_PATH)))
+    flight_to.click()
+    flight_to.clear()
+    flight_to.send_keys(arrival) 
+    flight_to.send_keys(Keys.ENTER)
+    browser.implicitly_wait(20)
+    t.sleep(3)
+    
     
     
     
