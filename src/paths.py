@@ -23,9 +23,13 @@ EXPEDIA_FLIGHTPRICE_RESULT = ""
 #Decolar
 #TODO: add Decolar buttons XPATH
 
-DECOLAR_DEPARTURE_PATH = '/html/body/div[8]/div[1]/div[2]/input'
+DECOLAR_DEPARTURE_BUTTON = '//*[@id="searchbox-sbox-box-packages"]/div/div/div/div/div[3]/div[1]/div/div[1]/div[1]/div/input'
 
-DECOLAR_ARRIVAL_PATH = '/html/body/div[8]/div[1]/div[2]/input'
+DECOLAR_ARRIVAL_BUTTON = ""
+
+DECOLAR_DEPARTURE_PATH = "//input[@class='ac-input-mobile']"
+
+DECOLAR_ARRIVAL_PATH = ''
 
 DECOLAR_DEPARTURE_DATE = ''
 

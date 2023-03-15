@@ -29,7 +29,7 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     flight_from.send_keys(Keys.ENTER)
     t.sleep(3)
     
-    arrival_button = wait.until(EC.element_to_be_clickable((By.XPATH,    EXPEDIA_ARRIVAL_BUTTON)))
+    arrival_button = wait.until(EC.element_to_be_clickable((By.XPATH, EXPEDIA_ARRIVAL_BUTTON)))
     arrival_button.click()
     flight_to = wait.until(EC.presence_of_element_located((By.XPATH, EXPEDIA_ARRIVAL_PATH)))
     flight_to.clear()
@@ -56,7 +56,20 @@ def expedia_scrapper(departure, arrival, going_dt, returning_dt):
     
     
     
-def decolar_scrapper(origin, departure, going_dt, returning_dt):
-    #TODO: add web scrapper for Decolar
+def decolar_scrapper(departure, arrival, going_dt, returning_dt):
+    #TODO: 
+    #TODO: 
+    
     DECOLAR_URL = 'https://www.decolar.com/'
+    
+    departure_button = wait.until(EC.element_to_be_clickable((By.XPATH, DECOLAR_DEPARTURE_BUTTON)))
+    departure_button.click()
+    flight_to = wait.until(EC.presence_of_element_located((By.XPATH, DECOLAR_DEPARTURE_PATH)))
+    flight_to.clear()
+    flight_to.send_keys(departure)
+    browser.implicitly_wait(20)
+    flight_to.send_keys(Keys.ENTER)
+    t.sleep(3)
+    
+    
     
