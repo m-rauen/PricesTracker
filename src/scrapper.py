@@ -65,11 +65,10 @@ def decolar_scrapper(departure, arrival, going_dt, returning_dt):
     browser.get(DECOLAR_URL)
     
     flight_from = wait.until(EC.element_to_be_clickable((By.XPATH, DECOLAR_DEPARTURE_PATH)))
-    flight_from.click()
+    #flight_from.click()
     flight_from.clear()
     flight_from.send_keys(departure)
     flight_from.send_keys(Keys.ENTER)
-    browser.implicitly_wait(20)
     t.sleep(3)
     
     flight_to = wait.until(EC.element_to_be_clickable((By.XPATH, DECOLAR_ARRIVAL_PATH)))
